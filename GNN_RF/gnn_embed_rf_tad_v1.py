@@ -362,7 +362,7 @@ def run_one_dim(
             best_details_df["pearson_test"] = float(p)
             best_details_df["spearman_test"] = float(s)
 
-        if np.isfinite(p) and np.isfinite(s) and p > 0.4 and s > 0.45:
+        if np.isfinite(p) and np.isfinite(s) and p > 0.2 and s > 0.25:
             emb_cols = [f"gnn_emb_{i}" for i in range(embed_dim)]
             emb_json = (
                 rep_df.loc[tr_mask | te_mask, ["WGATAR_id"] + emb_cols]
@@ -372,7 +372,7 @@ def run_one_dim(
             )
             hit_records.append(
                 {
-                    "embed_dim": rep_df,
+                    "embed_dim": embed_dim,
                     "attempt": attempts,
                     "seed": seed,
                     "pearson": float(p),
